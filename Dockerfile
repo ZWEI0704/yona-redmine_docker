@@ -3,7 +3,7 @@ FROM openjdk:8-jdk-alpine3.9
 LABEL Description="This image is used to start the yona" maintainer="pokev25"
 
 ARG YONA_VERSION=1.15.0
-ARG YONA_BIN=yona-v${YONA_VERSION}-bin.zip
+ARG YONA_BIN=yona-v1.15.1-bin.zip
 ARG YONA_DOWNLOAD_URL=https://github.com/yona-projects/yona/releases/download/v${YONA_VERSION}/${YONA_BIN}
 
 ## install package
