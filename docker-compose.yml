@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 services:
   yona:
@@ -12,3 +12,13 @@ services:
       - ./data:/yona/data
     ports:
       - "9000:9000"
+  yona-db:
+    image: mariadb:10.3
+    restart: always
+    environment:
+      - MARIADB_ROOT_PASSWORD=root1234
+      - MARIADB_USER=yona
+      - MARIADB_PASSWORD=pass1234
+      - MARIADB_DATABASE=yona
+    volumes:
+      - ./yona-db:/var/lib/mysql
