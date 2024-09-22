@@ -25,11 +25,10 @@ default 설정으로는 docker-compose.yml이 있는 폴더에 server-data 폴�
 docker-compose.yml 에서 server-data 폴더에 yona, redmine, mariadb의 모든 데이터가 모이도록 했습니다.
 만약 저장 장소를 바꾸고 싶다면 docker-compose.yml에서 volume의 위치를 변경하십시오.
 yona, redmine, mariadb 각각 저장 장소를 바꿀 수 있습니다.
+default 설정으로는 server-data 폴더에 저장됩니다.
+
 yona, redmine의 ports를 변경하여 자신이 필요한 ports로 할당할 수 있습니다.
-
-
-
-상세 사용법은 wiki 참조
+default 설정으로는 yona가 9000, redmine이 9001입니다.
 
 The MIT License (MIT)
 
