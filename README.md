@@ -4,13 +4,22 @@
 [![Build Status](https://travis-ci.org/pokev25/docker-yona.svg)](https://travis-ci.org/pokev25/docker-yona)
 
 
-**yona-redmine_docker**는 [Yona](http://yona.io)와 [Redmine](http://www.redmine.org/)을 한 번에 사용하기 편리하게 docker 컨테이너로 만든 컨테이너 이미지 입니다.
+**yona-redmine_docker**는 [Yona](http://yona.io)와 [Redmine](http://www.redmine.org/)을 한 번에 사용하는 docker-compose 입니다.
 만약 둘 중 하나만 사용하기 원하신다면 docker-compose.yml에서 해당 부분을 삭제하고 사용하시면 됩니다.
+
 window 11, Ubuntu 22.04 LTS에서 정상 작동하는 것을 확인했습니다.
 
-## yona 1.16.0 사용
+### yona:1.16.0 사용
+
+### redmine:latest 사용
+
+### mariadb:10.3 사용
+
 
 ## 간단 사용방법
+
+### server-data를 압축해제하세요.
+default 설정으로는 docker-compose.yml이 있는 폴더에 server-data 폴더가 있어야 합니다.
 
 ### docker-compose를 사용하세요.
 docker-compose.yml 에서 server-data 폴더에 yona, redmine, mariadb의 모든 데이터가 모이도록 했습니다.
