@@ -1,28 +1,59 @@
-version: '3'
-
 services:
-  yona:
-    build: .
-    image: pokev25/yona:1.15.0
-    restart: always
-    environment:
-      - BEFORE_SCRIPT=before.sh
-      - JAVA_OPTS=-Xmx2048m -Xms1024m
-    volumes:
-      - ./data:/yona/data
-    ports:
-      - "9000:9000"
-  yona-db:
+  mariaDB:
     image: mariadb:10.3
+    container_name: mariaDB
     restart: always
     environment:
-      - MARIADB_ROOT_PASSWORD=changeme
-      - MARIADB_USER=yona
-      - MARIADB_PASSWORD=changeme
-      - MARIADB_DATABASE=yona
+      - MARIADB_ROOT_PASSWORD=admin
+      - MARIADB_USER=admin
+      - MARIADB_PASSWORD=admin
       - TZ=Asia/Seoul
     command:
       - --character-set-server=utf8mb4
       - --collation-server=utf8mb4_unicode_ci      
     volumes:
-      - ./yona-db:/var/lib/mysql
+      - ./server-data/mariaDB:/var/lib/mysql
+    networks:
+      - backend
+      
+  yona:
+    build: .
+    image: yona:1.16.0
+    container_name: yona
+    depends_on:
+      - mariaDB
+    restart: always
+    environment:
+      - BEFORE_SCRIPT=before.sh
+      - JAVA_OPTS=-Xmx2048m -Xms1024m
+    volumes:
+      - ./server-data/yona:/yona/data
+    ports:
+      - 9000:9000
+    networks:
+      - backend
+    
+  redmine:
+    image: redmine:latest
+    container_name: redmine
+    depends_on:
+      - mariaDB
+    restart: always
+    environment:
+      - REDMINE_DB_DATABASE=redmine
+      - REDMINE_DB_ENCODING=utf8
+      - REDMINE_PLUGINS_MIGRATE=true
+      - REDMINE_DB_USERNAME=admin
+      - REDMINE_DB_PASSWORD=admin
+    volumes:
+      - ./server-data/redmine/files:/usr/src/redmine/files:rw
+      - ./server-data/redmine/plugins:/usr/src/redmine/plugins
+      - ./server-data/redmine/themes:/usr/src/redmine/public/themes
+    ports:
+      - 9001:3000
+    networks:
+      - backend
+    
+    
+networks:
+  backend:
