@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.org/pokev25/docker-yona.svg)](https://travis-ci.org/pokev25/docker-yona)
 
 
-**yona-redmine_docker**는 [Yona](http://yona.io)와 [Redmine](http://www.redmine.org/)을 한 번에 사용하는 docker-compose 입니다.
+**yona-redmine_docker**는 [Yona](http://yona.io)와 [Redmine](http://www.redmine.org/)을 한 번에 사용하는 docker-compose 입니다.  
 만약 둘 중 하나만 사용하기 원하신다면 docker-compose.yml에서 해당 부분을 삭제하고 사용하시면 됩니다.
 
 window 11, Ubuntu 22.04 LTS에서 정상 작동하는 것을 확인했습니다.
